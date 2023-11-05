@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Personal Expense Tracker</title>
+</head>
+<body>
+<h1>Personal Expense Tracker</h1>
+<ul>
+{% for category in categories %}
+<li>{{ category.name }}</li>
+{% endfor %}
+</ul>
+<form action="/add_category" method="post">
+<label for="name">Name:</label>
+<input type="text" name="name">
+<input type="submit" value="Add Category">
+</form>
+</body>
+</html>
+
+
