@@ -1,0 +1,21 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>Checkout</h1>
+<ul>
+{% for order_item in order_items %}
+<li>{{ order_item.name }} - {{ order_item.description }} - ${{ order_item.price }}</li>
+{% endfor %}
+</ul>
+<form action="{{ url_for('checkout') }}" method="post">
+<input type="submit" value="Place Order">
+</form>
+</body>
+</html>
+```
+
