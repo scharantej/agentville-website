@@ -1,0 +1,143 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Research & News Feed</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Research & News Feed</h1>
+
+        <!-- Section 1: Summary -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Summary</h2>
+                <div id="summary-container">
+                    Key takeaways:
+
+1. Researchers at MIT and BASF have developed a data-driven system that accelerates the process of discovering new 3D printing materials with multiple mechanical properties. This system could be used to develop new materials for a variety of applications, such as medical devices, prosthetics, and automotive parts.
+
+2. A team of researchers at MIT has developed a new AI-powered system that can generate 3D holograms in real time. This system could be used to create more immersive VR experiences, as well as for medical imaging and other applications.
+
+3. Researchers at the University of California, Berkeley have developed a new type of 3D printer that can print objects with multiple materials and colors. This printer could be used to create complex objects with a high degree of precision, which could be useful for applications such as manufacturing and prototyping.
+
+Here are some examples of how these problems can be solved:
+
+* The data-driven system for discovering new 3D printing materials could be used to develop new materials for medical devices that are stronger and more durable. This could lead to improved patient outcomes and reduced healthcare costs.
+
+
+* The AI-powered system for generating 3D holograms could be used to create more immersive VR experiences. This could make VR a more viable option for training surgeons, providing therapy for patients with PTSD, and other applications.
+
+
+* The 3D printer that can print objects with multiple materials and colors could be used to create complex objects with a high degree of precision. This could be useful for applications such as manufacturing and prototyping.
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: News Article Flash Cards -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>News Articles</h2>
+                <div class="card-deck" id="news-articles-container">
+                    <!-- News Article Flash Cards (Repeat for each article) -->
+                    
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Topic 1 title</h5>
+                    <p class="card-text">AI Hardware Processing Ascends to New Horizons with 3D Computing</p>
+                    <a href="Topic 1 description" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Their latest work introduces a cutting-edge integrated photonic-electronic hardware capable of processing three-dimensional (3D) data. This breakthrough not only ...</h5>
+                    <p class="card-text">Topic 1 url</p>
+                    <a href="https://www.msn.com/en-us/news/technology/ai-hardware-processing-ascends-to-new-horizons-with-3d-computing/ar-AA1ixTJs" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Topic 2 title</h5>
+                    <p class="card-text">Using artificial intelligence to generate 3D holograms in ...</p>
+                    <a href="Topic 2 description" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Real-time 3D holography would enhance a slew of systems, from VR to 3D printing. The team says the new system could help immerse VR viewers in more realistic scenery, while eliminating eye strain and other side effects of long-term VR use. The technology could be easily deployed on displays that modulate the phase of light waves.</h5>
+                    <p class="card-text">Topic 2 url</p>
+                    <a href="https://news.mit.edu/2021/3d-holograms-vr-0310" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Topic 3 title</h5>
+                    <p class="card-text">Accelerating the discovery of new materials for 3D printing | MIT News ...</p>
+                    <a href="Topic 3 description" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+        
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Researchers at MIT and BASF have developed a data-driven system that accelerates the process of discovering new 3D printing materials that have multiple mechanical properties. Credits Courtesy of the researchers</h5>
+                    <p class="card-text">Topic 3 url</p>
+                    <a href="https://news.mit.edu/2021/accelerating-materials-3d-printing-1015" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+        
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: YouTube Videos -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>YouTube Videos</h2>
+                <div id="videos-container">
+                    <!-- YouTube Video Embed (Repeat for each video) -->
+                    
+            <iframe width="560" height="315" src="https://youtube.com//watch?v=4MSS29YnGZs&pp=ygUOIFszRCBNb2RlbGxpbmc%3D" frameborder="0" allowfullscreen></iframe>
+            <br>
+        
+                </div>
+            </div>
+        </div>
+
+        <!-- Show more button for news articles -->
+        <div> <br> </div>
+        <button class="btn btn-secondary" id="show-more-news">Show More News</button>
+    </div>
+
+    <!-- Bootstrap JS and custom JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show/hide additional news articles
+        $("#show-more-news").click(function() {
+            $("#news-articles-container .card:hidden:lt(5)").toggle();
+        });
+
+        // Search functionality
+        $("#search-input").on("input", function() {
+            var searchTerm = $(this).val().toLowerCase();
+            $(".card").each(function() {
+                var cardText = $(this).find(".card-text").text().toLowerCase();
+                if (cardText.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
