@@ -1,0 +1,19 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ restaurant.name }} Menu</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>{{ restaurant.name }} Menu</h1>
+<ul>
+{% for menu_item in menu_items %}
+<li>{{ menu_item.name }} - {{ menu_item.description }} - ${{ menu_item.price }}</li>
+{% endfor %}
+</ul>
+<a href="{{ url_for('order', restaurant_id=restaurant.id) }}">Order Now</a>
+</body>
+</html>
+```
+
