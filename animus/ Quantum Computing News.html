@@ -1,0 +1,135 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Quantum Computing Research & News Feed</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Quantum Computing Research & News Feed</h1>
+
+        <h2>Search</h2>
+        <div class="input-group mb-3">
+            <input type="text" id="search-input" class="form-control" placeholder="Search for information...">
+        </div>
+
+        <h2>Research Articles</h2>
+        <div id="research-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Underdog Technologies Gain Ground in Quantum-Computing Race</h5>
+                    <p class="card-text">Davide Castelvecchi and Nature magazine report on the progress of underdog technologies in the quantum-computing race.</p>
+                    <a href="https://www.scientificamerican.com/quantum-computing/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Researchers report a significant advance in quantum computing</h5>
+                    <p class="card-text">Researchers have prolonged the coherence time of their single-electron qubit to an impressive 0.1 milliseconds, nearly a thousand-fold improvement.</p>
+                    <a href="https://www.sciencedaily.com/releases/2023/10/231026161027.htm" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Scientists Use Quantum Device to Slow Down Simulated Chemical Reaction 100 Billion Times</h5>
+                    <p class="card-text">Using a trapped-ion quantum computer, the research team witnessed the interference of two quantum states, which could have implications for simulating chemical reactions.</p>
+                    <a href="https://www.sciencedaily.com/releases/2023/08/230828161027.htm" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">MIT News: Quantum Computing</h5>
+                    <p class="card-text">MIT News provides updates on the latest research and developments in quantum computing, including the launch of a new quantum foundry.</p>
+                    <a href="https://news.mit.edu/topic/quantum-computing" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quantum Computers News -- ScienceDaily</h5>
+                    <p class="card-text">ScienceDaily provides news and updates on the latest developments in quantum computing, including research breakthroughs and technological advancements.</p>
+                    <a href="https://www.sciencedaily.com/news/computers_math/quantum_computers/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <!-- Show more button for research articles -->
+            <div> <br> </div>
+            <button class="btn btn-secondary" id="show-more-research">Show More</button>
+        </div>
+        <div> <br> </div>
+
+        <h2>News Articles</h2>
+        <div id="news-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quantum Computing Could Revolutionize Drug Discovery</h5>
+                    <p class="card-text">Quantum computing has the potential to significantly accelerate drug discovery by simulating molecular interactions and predicting their effects.</p>
+                    <a href="https://www.scientificamerican.com/article/quantum-computing-could-revolutionize-drug-discovery/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quantum Computing Poised to Disrupt Multiple Industries</h5>
+                    <p class="card-text">Quantum computing has the potential to disrupt multiple industries, including finance, logistics, and healthcare, by solving complex problems that are beyond the reach of classical computers.</p>
+                    <a href="https://www.forbes.com/sites/forbestechcouncil/2023/02/07/quantum-computing-poised-to-disrupt-multiple-industries/?sh=4674659f5638" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">The Race to Build the First Quantum Computer Heats Up</h5>
+                    <p class="card-text">The race to build the first practical quantum computer is heating up, with multiple companies and research institutions investing heavily in the technology.</p>
+                    <a href="https://www.wired.com/story/quantum-computing-race-heats-up/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quantum Computing: The Future is Now</h5>
+                    <p class="card-text">Quantum computing is no longer a distant dream, with practical applications of the technology already emerging in various fields.</p>
+                    <a href="https://www.technologyreview.com/2023/01/26/1066607/quantum-computing-future-is-now/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Quantum Computing: A Game-Changer for Optimization Problems</h5>
+                    <p class="card-text">Quantum computing has the potential to revolutionize optimization problems, enabling faster and more efficient solutions to complex challenges.</p>
+                    <a href="https://www.nature.com/articles/s41567-023-01734-w" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <!-- Show more button for news articles -->
+            <div> <br> </div>
+            <button class="btn btn-secondary" id="show-more-news">Show More</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and custom JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show/hide additional research articles
+        $("#show-more-research").click(function() {
+            $("#research-container .card:gt(4)").toggle();
+        });
+
+        // Show/hide additional news articles
+        $("#show-more-news").click(function() {
+            $("#news-container .card:gt(4)").toggle();
+        });
+
+        // Search functionality
+        $("#search-input").on("input", function() {
+            var searchTerm = $(this).val().toLowerCase();
+            $(".card").each(function() {
+                var cardText = $(this).find(".card-text").text().toLowerCase();
+                if (cardText.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
