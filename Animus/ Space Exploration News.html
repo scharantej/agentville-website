@@ -1,0 +1,105 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Space Exploration Research & News</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Space Exploration Research & News</h1>
+
+        <h2>Search</h2>
+        <div class="input-group mb-3">
+            <input type="text" id="search-input" class="form-control" placeholder="Search for information...">
+        </div>
+        <h2>Research Articles</h2>
+        <div id="research-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">3D Printing in Microgravity for Space Colonization</h5>
+                    <p class="card-text">3D printing in microgravity can be used to create structures that are impossible to create on Earth. This could be used to create habitats for space colonization, or to repair damaged satellites.</p>
+                    <a href="https://scitechdaily.com/to-advance-space-colonization-new-research-explores-3d-printing-in-microgravity/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Using Artificial Intelligence to Analyze Data from Space Telescopes</h5>
+                    <p class="card-text">Scientists are developing new ways to use artificial intelligence to analyze data from space telescopes. This could help us to discover new planets, stars, and galaxies.</p>
+                    <a href="https://www.space.com/artificial-intelligence-space-telescopes" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">New Propulsion Technologies for Spacecraft</h5>
+                    <p class="card-text">Researchers are working on new ways to propel spacecraft more efficiently. This could make it possible to travel to distant planets and moons.</p>
+                    <a href="https://www.nasa.gov/centers/glenn/technology/rocket/propulsion.html" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <!-- Show more button for research articles -->
+            <div> <br> </div>
+            <button class="btn btn-secondary" id="show-more-research">Show More</button>
+        </div>
+        <div> <br> </div>
+        <h2>News Articles</h2>
+        <div id="news-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">NASA's Artemis Program Aims to Return Humans to the Moon</h5>
+                    <p class="card-text">NASA's Artemis program aims to return humans to the moon by 2024. The program will involve sending a series of robotic missions to the moon to prepare for human exploration, followed by a crewed mission to the lunar surface.</p>
+                    <a href="https://www.nasa.gov/specials/artemis/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">SpaceX's Starship Program Aims to Colonize Mars</h5>
+                    <p class="card-text">SpaceX's Starship program aims to develop a reusable spacecraft that can carry humans and cargo to Mars. The program is still in its early stages, but SpaceX hopes to have a Starship ready for flight by 2024.</p>
+                    <a href="https://www.spacex.com/starship/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">China's Space Program Aims to Build a Space Station and Send Humans to the Moon</h5>
+                    <p class="card-text">China's space program is rapidly expanding, and the country has plans to build a space station and send humans to the moon. China is also developing a new heavy-lift rocket that could be used to launch large payloads into orbit.</p>
+                    <a href="https://www.space.com/china-space-program" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <!-- Show more button for news articles -->
+            <div> <br> </div>
+            <button class="btn btn-secondary" id="show-more-news">Show More</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and custom JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show/hide additional research articles
+        $("#show-more-research").click(function() {
+            $("#research-container .card:gt(2)").toggle();
+        });
+
+        // Show/hide additional news articles
+        $("#show-more-news").click(function() {
+            $("#news-container .card:gt(2)").toggle();
+        });
+
+        // Search functionality
+        $("#search-input").on("input", function() {
+            var searchTerm = $(this).val().toLowerCase();
+            $(".card").each(function() {
+                var cardText = $(this).find(".card-text").text().toLowerCase();
+                if (cardText.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
