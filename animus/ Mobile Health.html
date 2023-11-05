@@ -1,0 +1,114 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mobile Healthcare Research & News Feed</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Mobile Healthcare Research & News Feed</h1>
+        <br>
+        <div class="row">
+            <!-- Left Column: Flash Cards for News Articles -->
+            <div class="col-lg-6">
+                <h2>News Articles</h2>
+                <div class="card-deck" id="news-articles-container">
+                    <!-- News Article Flash Cards (Repeat for each article) -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mobile Health: making the leap to research and clinics</h5>
+                            <p class="card-text">Health applications for mobile and wearable devices continue to experience tremendous growth both in the commercial and research sectors, but their impact on healthcare has yet to be fully realized.</p>
+                            <a href="https://www.nature.com/articles/s41746-021-00454-z" class="btn btn-primary" target="_blank">Read more</a>
+                        </div>
+                    </div>
+                    <!-- Repeat the card for other articles -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mobile health (mHealth) news, resources and funding for global health ...</h5>
+                            <p class="card-text">Emocha (electronic mobile comprehensive health application) - An application platform developed by the Johns Hopkins researchers to work with payers, providers and health departments to reduce costs and support patients with conditions such as tuberculosis, hepatitis C and opioid addiction</p>
+                            <a href="https://www.fic.nih.gov/ResearchTopics/Pages/MobileHealth.aspx" class="btn btn-primary" target="_blank">Read more</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mobile health clinics in the United States - PMC - National Center for ...</h5>
+                            <p class="card-text">The average cost of the 37 dental clinics reporting was $1,169,559. To cover these costs, mobile health clinics depend heavily on philanthropy and government funding. Of the 281 clinics reporting on their sources, 52% reported philanthropic support and 45% reported federal funding (Fig. 3 ).</p>
+                            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7085168/" class="btn btn-primary" target="_blank">Read more</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">The Future Of Healthcare Is Mobile - Forbes</h5>
+                            <p class="card-text">The case for mobile healthcare is compelling. Research supports the acceptability and cost savings associated with mobile care for the vulnerable. A systematic review of mobile health...</p>
+                            <a href="https://www.forbes.com/sites/lisafitzpatrick/2021/01/15/the-future-of-healthcare-is-mobile/" class="btn btn-primary" target="_blank">Read more</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">The scope and impact of mobile health clinics in the United States: a ...</h5>
+                            <p class="card-text">Based on a search in the PubMed database and data from the online collaborative research network of mobile clinics MobileHealthMap.org, the authors evaluated 51 articles with evidence on the strengths and weaknesses of the mobile health sector in the United States.</p>
+                            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5629787/" class="btn btn-primary" target="_blank">Read more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Summary and YouTube Videos -->
+            <div class="col-lg-6">
+                <!-- Summary Section -->
+                <h2>Summary</h2>
+                <div id="summary-container">
+                    <ul>
+                        <li>Mobile health applications have the potential to significantly impact healthcare, but their full potential has yet to be realized.</li>
+                        <li>There is a need for more research on the effectiveness of mobile health applications.</li>
+                        <li>Mobile health clinics can provide a cost-effective way to deliver healthcare to underserved populations.</li>
+                    </ul>
+                </div>
+
+                <!-- YouTube Videos Section -->
+                <h2>YouTube Videos</h2>
+                <div id="videos-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/GluWUrTT1Cw" title="mHealth Technologies" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/JhDWqTpZqIc" title="Healthcare Data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/lo6D67MY4J4" title="Mobile Health Applications" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/JKxWh2QZo3Q" title="Security and Privacy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/fDq9sfCqUq4" title="Challenges in Mobile Healthcare" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Show more button for news articles -->
+        <div> <br> </div>
+        <button class="btn btn-secondary" id="show-more-news">Show More News</button>
+    </div>
+
+    <!-- Bootstrap JS and custom JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show/hide additional news articles
+        $("#show-more-news").click(function() {
+            $("#news-articles-container .card:hidden:lt(5)").toggle();
+        });
+
+        // Search functionality
+        $("#search-input").on("input", function() {
+            var searchTerm = $(this).val().toLowerCase();
+            $(".card").each(function() {
+                var cardText = $(this).find(".card-text").text().toLowerCase();
+                if (cardText.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
