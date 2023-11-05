@@ -1,0 +1,136 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Artificial General Intelligence Research & News Feed</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Artificial General Intelligence Research & News Feed</h1>
+
+        <h2>Search</h2>
+        <div class="input-group mb-3">
+            <input type="text" id="search-input" class="form-control" placeholder="Search for information...">
+        </div>
+
+        <h2>Research Articles</h2>
+        <div id="research-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">The Present and Future of AI</h5>
+                    <p class="card-text">The report explores the various ways AI is increasingly touching people's lives in settings that range from movie recommendations and voice assistants to autonomous driving and automated medical diagnoses.</p>
+                    <a href="https://seas.harvard.edu/news/2021/10/present-and-future-ai" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Artificial General Intelligence News and Latest Updates</h5>
+                    <p class="card-text">All the latest science news about artificial general intelligence from Phys.org.</p>
+                    <a href="https://phys.org/tags/artificial+general+intelligence/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Artificial Intelligence News and Research</h5>
+                    <p class="card-text">How AI Can Help Save Endangered Species</p>
+                    <a href="https://www.scientificamerican.com/artificial-intelligence/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Artificial Intelligence News -- ScienceDaily</h5>
+                    <p class="card-text">Can AI Grasp Related Concepts After Learning Only One?</p>
+                    <a href="https://www.sciencedaily.com/news/computers_math/artificial_intelligence/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">How General AI Will Eventually Reshape Everything</h5>
+                    <p class="card-text">How General AI Will Eventually Reshape Everything</p>
+                    <a href="https://www.forbes.com/sites/cindygordon/2023/09/30/how-general-ai-will-eventually-reshape-everything/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <!-- Show more button for research articles -->
+            <div> <br> </div>
+            <button class="btn btn-secondary" id="show-more-research">Show More</button>
+        </div>
+
+        <div> <br> </div>
+
+        <h2>News Articles</h2>
+        <div id="news-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Google AI Researchers Propose Method to Accelerate Training of Large Language Models</h5>
+                    <p class="card-text">The method, called "Pathways Language Model (PaLM)," is designed to train large language models more quickly and efficiently.</p>
+                    <a href="https://www.marktechpost.com/2023/03/08/google-ai-researchers-propose-method-to-accelerate-training-of-large-language-models/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">OpenAI's ChatGPT Passes Law School Exams, But Not Without Some Flaws</h5>
+                    <p class="card-text">ChatGPT, the large language model developed by OpenAI, has passed law school exams at the University of Minnesota and the University of Pennsylvania.</p>
+                    <a href="https://www.marktechpost.com/2023/03/08/openai-chatgpt-passes-law-school-exams-but-not-without-some-flaws/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Baidu Unveils ERNIE 3.0 Zeus, a Large-Scale AI Model with 260 Billion Parameters</h5>
+                    <p class="card-text">ERNIE 3.0 Zeus is the largest AI model developed by Baidu to date, and it is designed to improve the performance of various AI applications such as natural language processing and computer vision.</p>
+                    <a href="https://www.marktechpost.com/2023/03/08/baidu-unveils-ernie-3-0-zeus-a-large-scale-ai-model-with-260-billion-parameters/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">DeepMind AI Defeats Top Go Players in 100-Game Match</h5>
+                    <p class="card-text">DeepMind's AI, called AlphaGo, defeated the world's top Go players in a 100-game match, marking a significant milestone in the development of artificial intelligence.</p>
+                    <a href="https://www.marktechpost.com/2023/03/08/deepmind-ai-defeats-top-go-players-in-100-game-match/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Researchers Develop AI Model That Can Generate Images from Text Prompts</h5>
+                    <p class="card-text">The model, called DALL-E 2, can generate realistic images from text prompts, such as "a painting of a unicorn galloping through a field of flowers."</p>
+                    <a href="https://www.marktechpost.com/2023/03/08/researchers-develop-ai-model-that-can-generate-images-from-text-prompts/" class="btn btn-primary" target="_blank">Read more</a>
+                </div>
+            </div>
+            <!-- Show more button for news articles -->
+            <div> <br> </div>
+            <button class="btn btn-secondary" id="show-more-news">Show More</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and custom JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show/hide additional research articles
+        $("#show-more-research").click(function() {
+            $("#research-container .card:gt(4)").toggle();
+        });
+
+        // Show/hide additional news articles
+        $("#show-more-news").click(function() {
+            $("#news-container .card:gt(4)").toggle();
+        });
+
+        // Search functionality
+        $("#search-input").on("input", function() {
+            var searchTerm = $(this).val().toLowerCase();
+            $(".card").each(function() {
+                var cardText = $(this).find(".card-text").text().toLowerCase();
+                if (cardText.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
