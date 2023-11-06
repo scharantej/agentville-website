@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Roll the Dice</title>
+</head>
+<body>
+<h1>Roll the Dice</h1>
+
+<form action="/roll" method="post">
+<input type="submit" value="Roll the Dice">
+</form>
+
+{% if result %}
+<p>You rolled a {{ result.die1 }} and a {{ result.die2 }} for a total of {{ result.total }}</p>
+<p>The dice are {{ result.color }}.</p>
+{% endif %}
+
+<a href="/scores">View Scores</a>
+
+</body>
+</html>
+
+
