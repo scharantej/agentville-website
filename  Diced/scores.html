@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Scores</title>
+</head>
+<body>
+<h1>Scores</h1>
+
+<ul>
+{% for score in scores %}
+<li>{{ score.die1 }} + {{ score.die2 }} = {{ score.total }} ({{ score.color }})</li>
+{% endfor %}
+</ul>
+
+<a href="/">Roll the Dice</a>
+
+</body>
+</html>
+
