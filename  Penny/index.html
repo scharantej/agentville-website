@@ -3,41 +3,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Personal Expense Tracker</title>
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Personal Expense Tracker</h1>
+<div class="container">
+<h1>Expense Tracker</h1>
 <form action="/add_expense" method="post">
-<label for="amount">Amount:</label>
-<input type="number" name="amount" step="0.01">
-<label for="category">Category:</label>
-<select name="category">
+<div class="form-group">
+<label for="name">Name</label>
+<input type="text" class="form-control" id="name" name="name" placeholder="Enter expense name">
+</div>
+<div class="form-group">
+<label for="amount">Amount</label>
+<input type="number" class="form-control" id="amount" name="amount" placeholder="Enter expense amount">
+</div>
+<div class="form-group">
+<label for="category_id">Category</label>
+<select class="form-control" id="category_id" name="category_id">
+<option value="">Select a category</option>
 {% for category in categories %}
-<option value="{{ category.name }}">{{ category.name }}</option>
+<option value="{{ category.id }}">{{ category.name }}</option>
 {% endfor %}
 </select>
-<label for="date">Date:</label>
-<input type="date" name="date">
-<input type="submit" value="Add Expense">
+</div>
+<button type="submit" class="btn btn-primary">Add Expense</button>
 </form>
-<table>
+<br>
+<table class="table table-striped">
 <thead>
 <tr>
+<th>Name</th>
 <th>Amount</th>
 <th>Category</th>
-<th>Date</th>
+<th>Actions</th>
 </tr>
 </thead>
 <tbody>
 {% for expense in expenses %}
 <tr>
+<td>{{ expense.name }}</td>
 <td>{{ expense.amount }}</td>
-<td>{{ expense.category }}</td>
-<td>{{ expense.date }}</td>
+<td>{{ expense.category.name }}</td>
+<td>
+<a href="/edit_expense/{{ expense.id }}" class="btn btn-primary">Edit</a>
+<a href="/delete_expense/{{ expense.id }}" class="btn btn-danger">Delete</a>
+</td>
 </tr>
 {% endfor %}
 </tbody>
 </table>
+</div>
 </body>
 </html>
 
