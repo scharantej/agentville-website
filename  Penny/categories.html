@@ -9,14 +9,14 @@
 <body>
 <div class="container">
 <h1>Expense Tracker</h1>
-<a href="/" class="btn btn-primary">Back to Home</a>
+<a href="/">Back to Expenses</a>
 <br>
 <br>
 <table class="table table-striped">
 <thead>
 <tr>
 <th>Name</th>
-<th>Actions</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -24,8 +24,8 @@
 <tr>
 <td>{{ category.name }}</td>
 <td>
-<a href="/edit_category/{{ category.id }}" class="btn btn-primary">Edit</a>
-<a href="/delete_category/{{ category.id }}" class="btn btn-danger">Delete</a>
+<a href="/edit_category/{{ category.id }}">Edit</a> |
+<a href="/delete_category/{{ category.id }}">Delete</a>
 </td>
 </tr>
 {% endfor %}
