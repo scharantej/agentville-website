@@ -1,47 +1,64 @@
  
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-articles = [
-    {
-        'id': 1,
-        'title': 'The First Article',
-        'content': 'This is the first article.'
-    },
-    {
-        'id': 2,
-        'title': 'The Second Article',
-        'content': 'This is the second article.'
-    },
-    {
-        'id': 3,
-        'title': 'The Third Article',
-        'content': 'This is the third article.'
-    }
-]
-
 @app.route('/')
 def index():
+    articles = [
+        {
+            'title': 'Article 1',
+            'content': 'This is the content of article 1.'
+        },
+        {
+            'title': 'Article 2',
+            'content': 'This is the content of article 2.'
+        },
+        {
+            'title': 'Article 3',
+            'content': 'This is the content of article 3.'
+        }
+    ]
     return render_template('index.html', articles=articles)
 
 @app.route('/article/<int:article_id>')
 def article(article_id):
-    article = next((article for article in articles if article['id'] == article_id), None)
-    if article is None:
-        return redirect(url_for('index'))
+    articles = [
+        {
+            'title': 'Article 1',
+            'content': 'This is the content of article 1.'
+        },
+        {
+            'title': 'Article 2',
+            'content': 'This is the content of article 2.'
+        },
+        {
+            'title': 'Article 3',
+            'content': 'This is the content of article 3.'
+        }
+    ]
+    article = articles[article_id]
     return render_template('article.html', article=article)
 
-@app.route('/reading_list')
-def reading_list():
-    return render_template('reading_list.html', articles=articles)
-
-@app.route('/share/<int:article_id>')
-def share(article_id):
-    article = next((article for article in articles if article['id'] == article_id), None)
-    if article is None:
-        return redirect(url_for('index'))
-    return render_template('share.html', article=article)
+@app.route('/search')
+def search():
+    articles = [
+        {
+            'title': 'Article 1',
+            'content': 'This is the content of article 1.'
+        },
+        {
+            'title': 'Article 2',
+            'content': 'This is the content of article 2.'
+        },
+        {
+            'title': 'Article 3',
+            'content': 'This is the content of article 3.'
+        }
+    ]
+    keyword = request.args.get('keyword')
+    articles = [article for article in articles if keyword in article['title']]
+    return render_template('index.html', articles=articles)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
