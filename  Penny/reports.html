@@ -9,7 +9,7 @@
 <body>
 <div class="container">
 <h1>Expense Tracker</h1>
-<a href="/" class="btn btn-primary">Back to Home</a>
+<a href="/">Back to Expenses</a>
 <br>
 <br>
 <div class="row">
@@ -39,7 +39,7 @@ datasets: [
 {
 data: [
 {% for category in categories %}
-{{ category.expenses.count }},
+{{ category.total_amount }},
 {% endfor %}
 ],
 backgroundColor: [
@@ -76,7 +76,7 @@ type: 'line',
 data: {
 labels: [
 {% for expense in expenses %}
-"{{ expense.created_at.strftime('%Y-%m-%d') }}",
+"{{ expense.created_at }}",
 {% endfor %}
 ],
 datasets: [
