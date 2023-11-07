@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Share Article</title>
+</head>
+<body>
+<h1>Share Article</h1>
+<p>Share this article with your friends:</p>
+<ul>
+<li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url_for('article', article_id=article['id']) }}">Facebook</a></li>
+<li><a href="https://twitter.com/intent/tweet?text={{ article['title'] }}&url={{ url_for('article', article_id=article['id']) }}">Twitter</a></li>
+<li><a href="mailto:?subject={{ article['title'] }}&body={{ url_for('article', article_id=article['id']) }}">Email</a></li>
+</ul>
+</body>
+</html>
+
