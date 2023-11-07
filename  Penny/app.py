@@ -8,24 +8,19 @@ db = SQLAlchemy(app)
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    amount = db.Column(db.Float, nullable=False)
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    name = db.Column(db.String(80))
+    amount = db.Column(db.Float)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     category = db.relationship('Category', backref=db.backref('expenses', lazy=True))
-
-    def __repr__(self):
-        return '<Expense %r>' % self.name
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
-
-    def __repr__(self):
-        return '<Category %r>' % self.name
+    name = db.Column(db.String(80))
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    expenses = Expense.query.all()
+    return render_template('index.html', expenses=expenses)
 
 @app.route('/categories')
 def categories():
@@ -38,39 +33,30 @@ def reports():
 
 @app.route('/add_expense', methods=['POST'])
 def add_expense():
-    if request.method == 'POST':
-        name = request.form['name']
-        amount = request.form['amount']
-        category_id = request.form['category_id']
-
-        expense = Expense(name=name, amount=amount, category_id=category_id)
-        db.session.add(expense)
-        db.session.commit()
-
-        return redirect(url_for('index'))
+    name = request.form['name']
+    amount = float(request.form['amount'])
+    category_id = int(request.form['category_id'])
+    expense = Expense(name=name, amount=amount, category_id=category_id)
+    db.session.add(expense)
+    db.session.commit()
+    return redirect(url_for('index'))
 
 @app.route('/edit_expense/<int:id>', methods=['GET', 'POST'])
 def edit_expense(id):
-    expense = Expense.query.get_or_404(id)
-
+    expense = Expense.query.get(id)
     if request.method == 'POST':
         expense.name = request.form['name']
-        expense.amount = request.form['amount']
-        expense.category_id = request.form['category_id']
-
+        expense.amount = float(request.form['amount'])
+        expense.category_id = int(request.form['category_id'])
         db.session.commit()
-
         return redirect(url_for('index'))
-
     return render_template('edit_expense.html', expense=expense)
 
 @app.route('/delete_expense/<int:id>')
 def delete_expense(id):
-    expense = Expense.query.get_or_404(id)
-
+    expense = Expense.query.get(id)
     db.session.delete(expense)
     db.session.commit()
-
     return redirect(url_for('index'))
 
 @app.route('/get_expenses')
