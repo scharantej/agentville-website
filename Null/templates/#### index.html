@@ -1,0 +1,19 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Item List</title>
+</head>
+<body>
+<h1>Item List</h1>
+<ul>
+{% for item in items %}
+<li><a href="{{ url_for('view_item', item_id=loop.index) }}">{{ item }}</a></li>
+{% endfor %}
+</ul>
+<a href="{{ url_for('create_item') }}">Create New Item</a>
+</body>
+</html>
+
+
