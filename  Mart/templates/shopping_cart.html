@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<h1>Shopping Cart</h1>
+<ul>
+{% for cart_item in cart_items %}
+<li>{{ cart_item.product.name }} - ${{ cart_item.product.price }} x {{ cart_item.quantity }} = ${{ cart_item.product.price * cart_item.quantity }}</li>
+{% endfor %}
+</ul>
+<p>Total Price: ${{ total_price }}</p>
+<a href="{{ url_for('checkout') }}">Checkout</a>
+</body>
+</html>
+
+
