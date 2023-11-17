@@ -1,0 +1,40 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Personal Expenses Tracker</title>
+</head>
+<body>
+<h1>Manage Categories</h1>
+<form action="/create_category" method="post">
+<label for="name">Name:</label><br>
+<input type="text" id="name" name="name"><br><br>
+<input type="submit" value="Create Category">
+</form>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+{% for category in categories %}
+<tr>
+<td>{{ category.name }}</td>
+<td>
+<a href="/edit_category/{{ category.id }}">Edit</a> |
+<a href="/delete_category/{{ category.id }}">Delete</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<a href="/">Back to Home</a>
+</body>
+</html>
+
+
