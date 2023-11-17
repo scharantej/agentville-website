@@ -1,5 +1,5 @@
  
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -8,69 +8,62 @@ db = SQLAlchemy(app)
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    amount = db.Column(db.Float, nullable=False)
-    category = db.Column(db.String(50), nullable=False)
-    date = db.Column(db.Date, nullable=False)
+    name = db.Column(db.String(80))
+    amount = db.Column(db.Float)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    category = db.relationship('Category', backref=db.backref('expenses', lazy=True))
 
-    def __repr__(self):
-        return '<Expense %r>' % self.name
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
 
 @app.route('/')
 def index():
-    expenses = Expense.query.all()
-    return render_template('index.html', expenses=expenses)
-
-@app.route('/add_expense', methods=['GET', 'POST'])
-def add_expense():
-    if request.method == 'POST':
-        name = request.form['name']
-        amount = request.form['amount']
-        category = request.form['category']
-        date = request.form['date']
-
-        expense = Expense(name=name, amount=amount, category=category, date=date)
-        db.session.add(expense)
-        db.session.commit()
-
-        return redirect(url_for('index'))
-
-    return render_template('add_expense.html')
-
-@app.route('/edit_expense/<int:expense_id>', methods=['GET', 'POST'])
-def edit_expense(expense_id):
-    expense = Expense.query.get_or_404(expense_id)
-
-    if request.method == 'POST':
-        expense.name = request.form['name']
-        expense.amount = request.form['amount']
-        expense.category = request.form['category']
-        expense.date = request.form['date']
-
-        db.session.commit()
-
-        return redirect(url_for('index'))
-
-    return render_template('edit_expense.html', expense=expense)
-
-@app.route('/delete_expense/<int:expense_id>')
-def delete_expense(expense_id):
-    expense = Expense.query.get_or_404(expense_id)
-
-    db.session.delete(expense)
-    db.session.commit()
-
-    return redirect(url_for('index'))
+    return render_template('index.html')
 
 @app.route('/categories')
 def categories():
-    categories = Expense.query.distinct(Expense.category).all()
-    return render_template('categories.html', categories=categories)
+    return render_template('categories.html')
 
-@app.route('/trends')
-def trends():
+@app.route('/history')
+def history():
+    return render_template('history.html')
+
+@app.route('/add_expense', methods=['POST'])
+def add_expense():
+    name = request.form['name']
+    amount = float(request.form['amount'])
+    category_id = int(request.form['category_id'])
+    expense = Expense(name=name, amount=amount, category_id=category_id)
+    db.session.add(expense)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+@app.route('/delete_expense/<int:id>')
+def delete_expense(id):
+    expense = Expense.query.get(id)
+    db.session.delete(expense)
+    db.session.commit()
+    return redirect(url_for('index'))
+
+@app.route('/edit_expense/<int:id>', methods=['POST'])
+def edit_expense(id):
+    expense = Expense.query.get(id)
+    expense.name = request.form['name']
+    expense.amount = float(request.form['amount'])
+    expense.category_id = int(request.form['category_id'])
+    db.session.commit()
+    return redirect(url_for('index'))
+
+@app.route('/get_expenses')
+def get_expenses():
     expenses = Expense.query.all()
-    return render_template('trends.html', expenses=expenses)
+    return jsonify([expense.to_dict() for expense in expenses])
+
+@app.route('/get_categories')
+def get_categories():
+    categories = Category.query.all()
+    return jsonify([category.to_dict() for category in categories])
 
 if __name__ == '__main__':
     app.run(debug=True)
