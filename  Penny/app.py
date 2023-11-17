@@ -8,24 +8,28 @@ db = SQLAlchemy(app)
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    amount = db.Column(db.Float)
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    name = db.Column(db.String(80), nullable=False)
+    amount = db.Column(db.Float, nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category', backref=db.backref('expenses', lazy=True))
+
+    def __repr__(self):
+        return '<Expense %r>' % self.name
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    name = db.Column(db.String(80), unique=True, nullable=False)
+
+    def __repr__(self):
+        return '<Category %r>' % self.name
 
 @app.route('/')
 def index():
-    expenses = Expense.query.all()
-    return render_template('index.html', expenses=expenses)
+    return render_template('index.html')
 
 @app.route('/categories')
 def categories():
-    categories = Category.query.all()
-    return render_template('categories.html', categories=categories)
+    return render_template('categories.html')
 
 @app.route('/reports')
 def reports():
@@ -43,7 +47,7 @@ def add_expense():
 
 @app.route('/edit_expense/<int:id>', methods=['GET', 'POST'])
 def edit_expense(id):
-    expense = Expense.query.get(id)
+    expense = Expense.query.get_or_404(id)
     if request.method == 'POST':
         expense.name = request.form['name']
         expense.amount = float(request.form['amount'])
@@ -54,7 +58,7 @@ def edit_expense(id):
 
 @app.route('/delete_expense/<int:id>')
 def delete_expense(id):
-    expense = Expense.query.get(id)
+    expense = Expense.query.get_or_404(id)
     db.session.delete(expense)
     db.session.commit()
     return redirect(url_for('index'))
@@ -70,4 +74,5 @@ def get_categories():
     return jsonify([category.to_dict() for category in categories])
 
 if __name__ == '__main__':
+    db.create_all()
     app.run(debug=True)
