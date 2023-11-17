@@ -1,0 +1,25 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<h1>Expense Tracker</h1>
+<a href="/">Back to Home</a>
+<br>
+<br>
+<h2>Categories</h2>
+<ul>
+{% for category in categories %}
+<li>{{ category.name }}</li>
+{% endfor %}
+</ul>
+</div>
+</body>
+</html>
+
+
