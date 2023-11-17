@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<h1>Expense Tracker</h1>
+<a href="/">Back to Home</a>
+<br>
+<br>
+<h2>History</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Amount</th>
+<th>Category</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+{% for expense in expenses %}
+<tr>
+<td>{{ expense.name }}</td>
+<td>{{ expense.amount }}</td>
+<td>{{ expense.category.name }}</td>
+<td>{{ expense.date }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</body>
+</html>
+
