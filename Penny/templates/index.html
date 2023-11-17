@@ -3,16 +3,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Personal Expenses Tracker</title>
+<title>Expense Tracker</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Personal Expenses Tracker</h1>
-<ul>
-{% for expense in expenses %}
-<li>{{ expense.name }} - {{ expense.category }} - {{ expense.amount }} - {{ expense.date }}</li>
+<div class="container">
+<h1>Expense Tracker</h1>
+<form action="/add_expense" method="post">
+<div class="form-group">
+<label for="name">Name</label>
+<input type="text" class="form-control" id="name" name="name">
+</div>
+<div class="form-group">
+<label for="amount">Amount</label>
+<input type="number" class="form-control" id="amount" name="amount">
+</div>
+<div class="form-group">
+<label for="category_id">Category</label>
+<select class="form-control" id="category_id" name="category_id">
+<option value="">Select a category</option>
+{% for category in categories %}
+<option value="{{ category.id }}">{{ category.name }}</option>
 {% endfor %}
-</ul>
-<a href="/add">Add Expense</a>
+</select>
+</div>
+<button type="submit" class="btn btn-primary">Add Expense</button>
+</form>
+
+<table class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Amount</th>
+<th>Category</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+{% for expense in expenses %}
+<tr>
+<td>{{ expense.name }}</td>
+<td>{{ expense.amount }}</td>
+<td>{{ expense.category.name }}</td>
+<td>
+<a href="/edit_expense/{{ expense.id }}">Edit</a>
+<a href="/delete_expense/{{ expense.id }}">Delete</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
 </body>
 </html>
 
