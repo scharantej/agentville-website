@@ -1,0 +1,28 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Personal Expenses Tracker</title>
+</head>
+<body>
+<h1>Generate Report</h1>
+<form action="/generate_report" method="post">
+<label for="start_date">Start Date:</label><br>
+<input type="date" id="start_date" name="start_date"><br>
+<label for="end_date">End Date:</label><br>
+<input type="date" id="end_date" name="end_date"><br>
+<label for="category">Category:</label><br>
+<select id="category" name="category">
+<option value="All">All</option>
+{% for category in categories %}
+<option value="{{ category.name }}">{{ category.name }}</option>
+{% endfor %}
+</select><br><br>
+<input type="submit" value="Generate Report">
+</form>
+
+<a href="/">Back to Home</a>
+</body>
+</html>
+
