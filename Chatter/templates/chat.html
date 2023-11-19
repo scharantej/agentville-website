@@ -3,16 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Chat App</title>
+<title>Chat</title>
 </head>
 <body>
 <h1>Chat</h1>
-<ul id="messages">
-</ul>
 <form action="/chat" method="post">
-<input type="text" name="message" placeholder="Your message">
+<input type="text" name="message">
 <input type="submit" value="Send">
 </form>
+<ul>
+{% for message in messages %}
+<li>{{ message }}</li>
+{% endfor %}
+</ul>
 </body>
 </html>
+
 
