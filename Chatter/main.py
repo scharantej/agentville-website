@@ -1,26 +1,41 @@
- 
-# Import the necessary modules
-from flask import Flask, render_template, request, redirect, url_for
+```python
+from flask import Flask, render_template, request
 
-# Create a Flask app
 app = Flask(__name__)
 
-# Define the home route
 @app.route('/')
-def home():
-    return render_template('home.html')
+def index():
+  return render_template('index.html')
 
-# Define the chat route
-@app.route('/chat', methods=['GET', 'POST'])
+@app.route('/chat')
 def chat():
-    if request.method == 'GET':
-        return render_template('chat.html')
-    elif request.method == 'POST':
-        message = request.form['message']
-        # Save the message to the database
-        # ...
-        return redirect(url_for('chat'))
+  return render_template('chat.html')
 
-# Run the app
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  if request.method == 'GET':
+    return render_template('login.html')
+  else:
+    username = request.form['username']
+    password = request.form['password']
+    user = User.query.filter_by(username=username, password=password).first()
+    if user:
+      return redirect(url_for('chat'))
+    else:
+      return render_template('login.html', error='Invalid credentials')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+  if request.method == 'GET':
+    return render_template('register.html')
+  else:
+    username = request.form['username']
+    password = request.form['password']
+    user = User(username=username, password=password)
+    db.session.add(user)
+    db.session.commit()
+    return redirect(url_for('chat'))
+
 if __name__ == '__main__':
-    app.run()
+  app.run()
+```
