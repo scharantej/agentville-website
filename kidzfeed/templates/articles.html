@@ -1,0 +1,27 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Newsfeed for Kids - Articles</title>
+</head>
+<body>
+<h1>Newsfeed for Kids - Articles</h1>
+<nav>
+<a href="/">Home</a>
+<a href="/articles">Articles</a>
+<a href="/login">Login</a>
+<a href="/signup">Sign Up</a>
+</nav>
+<main>
+<h2>Articles</h2>
+<ul>
+{% for article in articles %}
+<li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
+{% endfor %}
+</ul>
+</main>
+</body>
+</html>
+
+
