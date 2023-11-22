@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +7,18 @@
 </head>
 <body>
 <h1>Newsfeed for Kids</h1>
-<ul>
-{% for article in articles %}
-<li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
-{% endfor %}
-</ul>
+<nav>
+<a href="/">Home</a>
+<a href="/articles">Articles</a>
+<a href="/login">Login</a>
+<a href="/signup">Sign Up</a>
+</nav>
+<main>
+<h2>Welcome to the Newsfeed for Kids!</h2>
+<p>Here you can find news articles that are written specifically for kids. We have articles on a variety of topics, including science, history, math, and more. So whether you're looking to learn something new or just want to be entertained, we have something for you.</p>
+<p>We hope you enjoy the Newsfeed for Kids!</p>
+</main>
 </body>
 </html>
+
+
