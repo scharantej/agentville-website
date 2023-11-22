@@ -1,0 +1,25 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Projects</title>
+</head>
+<body>
+<h1>Projects</h1>
+<ul>
+{% for project in projects %}
+<li>{{ project.name }}
+{% if project.note %}
+- {{ project.note }}
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+<form action="/add_note" method="post">
+<input type="text" name="note">
+<input type="submit" value="Add Note">
+</form>
+</body>
+</html>
+
