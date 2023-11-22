@@ -14,11 +14,10 @@
 <a href="/signup">Sign Up</a>
 </nav>
 <main>
-<h2>Articles</h2>
 <ul>
-<li><a href="/article/1">Article 1</a></li>
-<li><a href="/article/2">Article 2</a></li>
-<li><a href="/article/3">Article 3</a></li>
+{% for article in articles %}
+<li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
+{% endfor %}
 </ul>
 </main>
 </body>
