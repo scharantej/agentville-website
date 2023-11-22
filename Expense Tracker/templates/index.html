@@ -1,0 +1,23 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Expense Tracker</title>
+</head>
+<body>
+<h1>Expense Tracker</h1>
+<form action="/expense" method="post">
+<input type="text" name="title">
+<input type="text" name="amount">
+<input type="submit" value="Add Expense">
+</form>
+<ul>
+{% for expense in expenses %}
+<li><a href="/expense/{{ expense.id }}">{{ expense.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
+
+
