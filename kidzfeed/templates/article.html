@@ -3,20 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Newsfeed for Kids - Article</title>
+<title>{{ article.title }}</title>
 </head>
 <body>
-<h1>Newsfeed for Kids - Article</h1>
-<nav>
-<a href="/">Home</a>
-<a href="/articles">Articles</a>
-<a href="/login">Login</a>
-<a href="/signup">Sign Up</a>
-</nav>
-<main>
-<h2>{{ article.title }}</h2>
+<h1>{{ article.title }}</h1>
 <p>{{ article.content }}</p>
-</main>
+<p>By {{ article.author }}</p>
 </body>
 </html>
 
