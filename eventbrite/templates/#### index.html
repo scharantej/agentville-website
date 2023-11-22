@@ -1,0 +1,19 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Teen Music News</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Teen Music News</h1>
+<ul>
+{% for article in articles %}
+<li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
+
+
