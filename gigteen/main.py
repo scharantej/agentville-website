@@ -5,50 +5,67 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    articles = [
-        {
-            'title': 'New Music Festival Announced for Teenagers',
-            'content': 'A new music festival for teenagers has been announced. The festival will be held in July in Los Angeles, California. The lineup includes some of the biggest names in teen music, including Justin Bieber, Ariana Grande, and Shawn Mendes.',
-            'image': 'https://i.imgur.com/5a64y9G.jpg'
-        },
-        {
-            'title': 'Teen Singer-Songwriter Releases New Album',
-            'content': 'A new album from teen singer-songwriter Billie Eilish has been released. The album, titled "When We All Fall Asleep, Where Do We Go?", is Eilish's debut album. It has been met with critical acclaim and has already topped the charts in several countries.',
-            'image': 'https://i.imgur.com/6t8349G.jpg'
-        },
-        {
-            'title': 'New Music Video from Teen Pop Star',
-            'content': 'A new music video from teen pop star JoJo Siwa has been released. The video, for the song "D.R.E.A.M.", is a high-energy dance routine that is sure to get you moving. The video has already been viewed over 10 million times on YouTube.',
-            'image': 'https://i.imgur.com/7y94y9G.jpg'
-        }
-    ]
-    return render_template('index.html', articles=articles)
+  events = [
+    {
+      'id': 1,
+      'title': 'Teen Music Festival',
+      'description': 'A music festival for teenagers featuring live performances from popular artists.',
+      'date': '2023-03-18',
+      'time': '12:00 PM - 6:00 PM',
+      'location': 'Central Park'
+    },
+    {
+      'id': 2,
+      'title': 'Battle of the Bands',
+      'description': 'A competition for teenage bands to showcase their talents.',
+      'date': '2023-04-01',
+      'time': '7:00 PM - 10:00 PM',
+      'location': 'The Fillmore'
+    },
+    {
+      'id': 3,
+      'title': 'Teen Open Mic Night',
+      'description': 'An open mic night for teenagers to perform their own music.',
+      'date': '2023-04-15',
+      'time': '7:00 PM - 9:00 PM',
+      'location': 'The Coffee Bean & Tea Leaf'
+    }
+  ]
+  return render_template('index.html', events=events)
 
-@app.route('/article/<int:article_id>')
-def article(article_id):
-    articles = [
-        {
-            'title': 'New Music Festival Announced for Teenagers',
-            'content': 'A new music festival for teenagers has been announced. The festival will be held in July in Los Angeles, California. The lineup includes some of the biggest names in teen music, including Justin Bieber, Ariana Grande, and Shawn Mendes.',
-            'image': 'https://i.imgur.com/5a64y9G.jpg'
-        },
-        {
-            'title': 'Teen Singer-Songwriter Releases New Album',
-            'content': 'A new album from teen singer-songwriter Billie Eilish has been released. The album, titled "When We All Fall Asleep, Where Do We Go?", is Eilish's debut album. It has been met with critical acclaim and has already topped the charts in several countries.',
-            'image': 'https://i.imgur.com/6t8349G.jpg'
-        },
-        {
-            'title': 'New Music Video from Teen Pop Star',
-            'content': 'A new music video from teen pop star JoJo Siwa has been released. The video, for the song "D.R.E.A.M.", is a high-energy dance routine that is sure to get you moving. The video has already been viewed over 10 million times on YouTube.',
-            'image': 'https://i.imgur.com/7y94y9G.jpg'
-        }
-    ]
-    article = articles[article_id]
-    return render_template('article.html', article=article)
+@app.route('/event/<int:event_id>')
+def event(event_id):
+  event = [
+    {
+      'id': 1,
+      'title': 'Teen Music Festival',
+      'description': 'A music festival for teenagers featuring live performances from popular artists.',
+      'date': '2023-03-18',
+      'time': '12:00 PM - 6:00 PM',
+      'location': 'Central Park'
+    },
+    {
+      'id': 2,
+      'title': 'Battle of the Bands',
+      'description': 'A competition for teenage bands to showcase their talents.',
+      'date': '2023-04-01',
+      'time': '7:00 PM - 10:00 PM',
+      'location': 'The Fillmore'
+    },
+    {
+      'id': 3,
+      'title': 'Teen Open Mic Night',
+      'description': 'An open mic night for teenagers to perform their own music.',
+      'date': '2023-04-15',
+      'time': '7:00 PM - 9:00 PM',
+      'location': 'The Coffee Bean & Tea Leaf'
+    }
+  ]
+  return render_template('event.html', event=event)
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+  return render_template('about.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+  app.run(debug=True)
