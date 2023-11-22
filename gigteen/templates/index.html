@@ -1,0 +1,19 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Musical Events for Teenagers</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<h1>Musical Events for Teenagers</h1>
+<ul>
+{% for event in events %}
+<li><a href="/event/{{ event.id }}">{{ event.title }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
+
+
