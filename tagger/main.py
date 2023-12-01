@@ -1,27 +1,26 @@
  
-from flask import Flask, render_template, request, redirect, url_for
-from gcp_tagging import tag_project, untag_project
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+projects = [
+    {'id': 'project-1', 'name': 'Project 1'},
+    {'id': 'project-2', 'name': 'Project 2'},
+    {'id': 'project-3', 'name': 'Project 3'},
+]
+
 @app.route('/')
 def index():
-  projects = get_projects()
-  opportunities = get_opportunities()
-  return render_template('index.html', projects=projects, opportunities=opportunities)
+    return render_template('index.html', projects=projects)
 
-@app.route('/tag', methods=['POST'])
-def tag():
-  project_id = request.form['project_id']
-  opportunity_id = request.form['opportunity_id']
-  tag_project(project_id, opportunity_id)
-  return redirect(url_for('index'))
+@app.route('/tag_project', methods=['POST'])
+def tag_project():
+    project_id = request.form['project_id']
+    salesforce_id = request.form['salesforce_id']
 
-@app.route('/untag', methods=['POST'])
-def untag():
-  project_id = request.form['project_id']
-  untag_project(project_id)
-  return redirect(url_for('index'))
+    # TODO: Save the salesforce ID for the project
+
+    return render_template('index.html', projects=projects)
 
 if __name__ == '__main__':
-  app.run(debug=True)
+    app.run(debug=True)
