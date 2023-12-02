@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>View Expenses</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h1>View Expenses</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Amount</th>
+<th>Category</th>
+</tr>
+</thead>
+<tbody>
+{% for expense in expenses %}
+<tr>
+<td>{{ expense.name }}</td>
+<td>{{ expense.amount }}</td>
+<td>{{ expense.category }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</body>
+</html>
+
+
+style.css
+
+css
+body {
+font-family: Arial, sans-serif;
+}
+
+h1 {
+font-size: 24px;
+}
+
+table {
+width: 100%;
+border-collapse: collapse;
+}
+
+th, td {
+border: 1px solid black;
+padding: 5px;
+}
+
