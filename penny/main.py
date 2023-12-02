@@ -1,107 +1,86 @@
  
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-import sqlite3
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'
+db = SQLAlchemy(app)
 
-# Connect to the database
-conn = sqlite3.connect('expenses.db')
-c = conn.cursor()
+class Expense(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80))
+    category = db.Column(db.String(50))
+    amount = db.Column(db.Float)
+    date = db.Column(db.Date)
 
-# Create the expenses table if it doesn't exist
-c.execute("""CREATE TABLE IF NOT EXISTS expenses (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    category TEXT,
-    amount REAL,
-    date TEXT
-)""")
+    def __repr__(self):
+        return '<Expense %r>' % self.name
 
-# Create the categories table if it doesn't exist
-c.execute("""CREATE TABLE IF NOT EXISTS categories (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT
-)""")
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
 
-# Define the routes
+    def __repr__(self):
+        return '<Category %r>' % self.name
+
+db.create_all()
+
 @app.route('/')
 def index():
-    # Get all the expenses
-    expenses = c.execute('SELECT * FROM expenses').fetchall()
-
-    # Get all the categories
-    categories = c.execute('SELECT * FROM categories').fetchall()
-
-    return render_template('index.html', expenses=expenses, categories=categories)
+    return render_template('index.html')
 
 @app.route('/categories')
 def categories():
-    # Get all the categories
-    categories = c.execute('SELECT * FROM categories').fetchall()
-
+    categories = Category.query.all()
     return render_template('categories.html', categories=categories)
 
 @app.route('/history')
 def history():
-    # Get all the expenses
-    expenses = c.execute('SELECT * FROM expenses').fetchall()
-
+    expenses = Expense.query.all()
     return render_template('history.html', expenses=expenses)
 
 @app.route('/add_expense', methods=['POST'])
 def add_expense():
-    # Get the form data
-    category = request.form.get('category')
-    amount = request.form.get('amount')
-    date = request.form.get('date')
+    name = request.form['name']
+    category = request.form['category']
+    amount = float(request.form['amount'])
+    date = request.form['date']
 
-    # Insert the expense into the database
-    c.execute('INSERT INTO expenses (category, amount, date) VALUES (?, ?, ?)',
-              (category, amount, date))
-    conn.commit()
+    expense = Expense(name=name, category=category, amount=amount, date=date)
+    db.session.add(expense)
+    db.session.commit()
 
-    # Redirect to the home page
     return redirect(url_for('index'))
 
 @app.route('/delete_expense/<int:id>')
 def delete_expense(id):
-    # Delete the expense from the database
-    c.execute('DELETE FROM expenses WHERE id = ?', (id,))
-    conn.commit()
+    expense = Expense.query.get(id)
+    db.session.delete(expense)
+    db.session.commit()
 
-    # Redirect to the home page
     return redirect(url_for('index'))
 
 @app.route('/edit_expense/<int:id>', methods=['POST'])
 def edit_expense(id):
-    # Get the form data
-    category = request.form.get('category')
-    amount = request.form.get('amount')
-    date = request.form.get('date')
+    expense = Expense.query.get(id)
+    expense.name = request.form['name']
+    expense.category = request.form['category']
+    expense.amount = float(request.form['amount'])
+    expense.date = request.form['date']
 
-    # Update the expense in the database
-    c.execute('UPDATE expenses SET category = ?, amount = ?, date = ? WHERE id = ?',
-              (category, amount, date, id))
-    conn.commit()
+    db.session.commit()
 
-    # Redirect to the home page
     return redirect(url_for('index'))
 
 @app.route('/get_expenses')
 def get_expenses():
-    # Get all the expenses
-    expenses = c.execute('SELECT * FROM expenses').fetchall()
-
-    # Return the expenses in JSON format
-    return jsonify(expenses)
+    expenses = Expense.query.all()
+    return jsonify([expense.to_dict() for expense in expenses])
 
 @app.route('/get_categories')
 def get_categories():
-    # Get all the categories
-    categories = c.execute('SELECT * FROM categories').fetchall()
+    categories = Category.query.all()
+    return jsonify([category.to_dict() for category in categories])
 
-    # Return the categories in JSON format
-    return jsonify(categories)
-
-# Start the app
 if __name__ == '__main__':
     app.run(debug=True)
