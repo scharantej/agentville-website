@@ -1,19 +1,8 @@
  
 from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'
-db = SQLAlchemy(app)
-
-class Expense(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
-    amount = db.Column(db.Float)
-    category = db.Column(db.String(50))
-
-    def __repr__(self):
-        return '<Expense %r>' % self.name
 
 @app.route('/')
 def index():
@@ -22,13 +11,11 @@ def index():
 @app.route('/add_expense', methods=['GET', 'POST'])
 def add_expense():
     if request.method == 'POST':
-        name = request.form['name']
-        amount = request.form['amount']
-        category = request.form['category']
+        amount = request.form.get('amount')
+        category = request.form.get('category')
+        date = request.form.get('date')
 
-        expense = Expense(name=name, amount=amount, category=category)
-        db.session.add(expense)
-        db.session.commit()
+        # Save the expense to the database
 
         return redirect(url_for('view_expenses'))
 
@@ -36,9 +23,9 @@ def add_expense():
 
 @app.route('/view_expenses')
 def view_expenses():
-    expenses = Expense.query.all()
+    # Get all expenses from the database
+
     return render_template('view_expenses.html', expenses=expenses)
 
 if __name__ == '__main__':
-    db.create_all()
     app.run(debug=True)
