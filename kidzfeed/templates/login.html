@@ -4,14 +4,32 @@
 <html>
 <head>
 <title>Login</title>
+<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<h1>Login</h1>
+<header>
+<h1>Newsfeed for Kids</h1>
+<nav>
+<a href="/">Home</a>
+<a href="/login">Login</a>
+<a href="/signup">Sign Up</a>
+</nav>
+</header>
+
+<main>
+<section id="login">
+<h2>Login</h2>
 <form action="/login" method="post">
 <input type="text" name="username" placeholder="Username">
 <input type="password" name="password" placeholder="Password">
 <input type="submit" value="Login">
 </form>
+</section>
+</main>
+
+<footer>
+<p>Copyright 2023 Newsfeed for Kids</p>
+</footer>
 </body>
 </html>
 
