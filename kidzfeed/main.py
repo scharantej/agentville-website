@@ -1,37 +1,50 @@
  
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return render_template('index.html')
+  articles = [
+    {
+      'id': 1,
+      'title': 'New Toy Released',
+      'content': 'A new toy has been released that is sure to be a hit with kids. The toy is called the "XYZ" and it is a [description of the toy].'
+    },
+    {
+      'id': 2,
+      'title': 'Toy Recall',
+      'content': 'A popular toy has been recalled due to a safety hazard. The toy is called the "ABC" and it has been recalled because [description of the safety hazard].'
+    },
+    {
+      'id': 3,
+      'title': 'New Toy Store Opens',
+      'content': 'A new toy store has opened in town. The store is called "The Toy Box" and it is located at [address].'
+    }
+  ]
+  return render_template('index.html', articles=articles)
 
-@app.route('/article/<int:id>')
-def article(id):
-  return render_template('article.html', id=id)
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-  if request.method == 'POST':
-    username = request.form['username']
-    password = request.form['password']
-    if username == 'admin' and password == 'secret':
-      return redirect(url_for('index'))
-    else:
-      return render_template('login.html', error='Invalid credentials')
-  else:
-    return render_template('login.html')
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-  if request.method == 'POST':
-    username = request.form['username']
-    password = request.form['password']
-    # TODO: Save the user to the database
-    return redirect(url_for('index'))
-  else:
-    return render_template('signup.html')
+@app.route('/article/<int:article_id>')
+def article(article_id):
+  articles = [
+    {
+      'id': 1,
+      'title': 'New Toy Released',
+      'content': 'A new toy has been released that is sure to be a hit with kids. The toy is called the "XYZ" and it is a [description of the toy].'
+    },
+    {
+      'id': 2,
+      'title': 'Toy Recall',
+      'content': 'A popular toy has been recalled due to a safety hazard. The toy is called the "ABC" and it has been recalled because [description of the safety hazard].'
+    },
+    {
+      'id': 3,
+      'title': 'New Toy Store Opens',
+      'content': 'A new toy store has opened in town. The store is called "The Toy Box" and it is located at [address].'
+    }
+  ]
+  article = articles[article_id - 1]
+  return render_template('article.html', article=article)
 
 if __name__ == '__main__':
   app.run(debug=True)
