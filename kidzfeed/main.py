@@ -1,62 +1,37 @@
  
-from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///kidsnewsfeed.db'
-db = SQLAlchemy(app)
 
-class Article(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  title = db.Column(db.String(80), unique=True, nullable=False)
-  content = db.Column(db.Text, nullable=False)
-
-  def __repr__(self):
-    return '<Article %r>' % self.title
-
-class User(db.Model):
-  id = db.Column(db.Integer, primary_key=True)
-  username = db.Column(db.String(80), unique=True, nullable=False)
-  password = db.Column(db.String(80), nullable=False)
-
-  def __repr__(self):
-    return '<User %r>' % self.username
-
-@app.route("/")
+@app.route('/')
 def index():
-  articles = Article.query.all()
-  return render_template("index.html", articles=articles)
+  return render_template('index.html')
 
-@app.route("/article/<int:article_id>")
-def article(article_id):
-  article = Article.query.get(article_id)
-  return render_template("article.html", article=article)
+@app.route('/article/<int:id>')
+def article(id):
+  return render_template('article.html', id=id)
 
-@app.route("/login", methods=["GET", "POST"])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-  if request.method == "GET":
-    return render_template("login.html")
-  else:
-    username = request.form["username"]
-    password = request.form["password"]
-    user = User.query.filter_by(username=username, password=password).first()
-    if user:
-      login_user(user)
-      return redirect("/")
+  if request.method == 'POST':
+    username = request.form['username']
+    password = request.form['password']
+    if username == 'admin' and password == 'secret':
+      return redirect(url_for('index'))
     else:
-      return render_template("login.html", error="Invalid credentials")
-
-@app.route("/register", methods=["GET", "POST"])
-def register():
-  if request.method == "GET":
-    return render_template("register.html")
+      return render_template('login.html', error='Invalid credentials')
   else:
-    username = request.form["username"]
-    password = request.form["password"]
-    user = User(username=username, password=password)
-    db.session.add(user)
-    db.session.commit()
-    return redirect("/")
+    return render_template('login.html')
 
-if __name__ == "__main__":
-  app.run()
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+  if request.method == 'POST':
+    username = request.form['username']
+    password = request.form['password']
+    # TODO: Save the user to the database
+    return redirect(url_for('index'))
+  else:
+    return render_template('signup.html')
+
+if __name__ == '__main__':
+  app.run(debug=True)
