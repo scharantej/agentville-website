@@ -1,0 +1,21 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Newsfeed</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<h1>Newsfeed</h1>
+<ul>
+{% for article in articles %}
+<li><a href="{{ url_for('article', id=article.id) }}">{{ article.title }}</a></li>
+{% endfor %}
+</ul>
+</div>
+</body>
+</html>
+
+
