@@ -1,0 +1,17 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Delete Category</title>
+</head>
+<body>
+<h1>Delete Category</h1>
+<p>Are you sure you want to delete the category "{{ category.name }}"? This action cannot be undone.</p>
+<form action="/delete_category/{{ category.id }}" method="post">
+<input type="submit" value="Yes">
+<a href="/">No</a>
+</form>
+</body>
+</html>
+
