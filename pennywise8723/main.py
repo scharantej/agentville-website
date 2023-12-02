@@ -1,20 +1,8 @@
  
 from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///expenses.db'
-db = SQLAlchemy(app)
-
-class Expense(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), nullable=False)
-    amount = db.Column(db.Float, nullable=False)
-    category = db.Column(db.String(50), nullable=False)
-    date = db.Column(db.Date, nullable=False)
-
-    def __repr__(self):
-        return '<Expense %r>' % self.name
 
 @app.route('/')
 def index():
@@ -23,23 +11,39 @@ def index():
 @app.route('/add_expense', methods=['GET', 'POST'])
 def add_expense():
     if request.method == 'POST':
-        name = request.form['name']
-        amount = request.form['amount']
-        category = request.form['category']
-        date = request.form['date']
+        amount = request.form.get('amount')
+        category = request.form.get('category')
+        date = request.form.get('date')
 
-        expense = Expense(name=name, amount=amount, category=category, date=date)
-        db.session.add(expense)
-        db.session.commit()
+        # Save the expense to the database.
 
-        return redirect(url_for('index'))
-
-    return render_template('add_expense.html')
+        return redirect(url_for('view_expenses'))
+    else:
+        return render_template('add_expense.html')
 
 @app.route('/view_expenses')
 def view_expenses():
-    expenses = Expense.query.all()
+    # Get all expenses from the database.
+
+    expenses = [
+        {
+            'amount': 100,
+            'category': 'Food',
+            'date': '2023-03-08'
+        },
+        {
+            'amount': 200,
+            'category': 'Transportation',
+            'date': '2023-03-09'
+        },
+        {
+            'amount': 300,
+            'category': 'Entertainment',
+            'date': '2023-03-10'
+        }
+    ]
+
     return render_template('view_expenses.html', expenses=expenses)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
