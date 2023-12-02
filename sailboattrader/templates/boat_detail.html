@@ -4,11 +4,13 @@
 <html>
 <head>
 <title>Steer</title>
+<link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-<h1>Boat 1</h1>
-<p>Price: $100,000</p>
-<p>Contact Info: John Smith (john.smith@example.com)</p>
+<h1>{{ boat.name }}</h1>
+<img src="{{ boat.image_url }}">
+<p>{{ boat.price }}</p>
+<p>{{ boat.contact_info }}</p>
 </body>
 </html>
 
