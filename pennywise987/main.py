@@ -18,12 +18,30 @@ def add_expense():
         # Save the expense to the database.
 
         return redirect(url_for('view_expenses'))
-
-    return render_template('add_expense.html')
+    else:
+        return render_template('add_expense.html')
 
 @app.route('/view_expenses')
 def view_expenses():
     # Get all expenses from the database.
+
+    expenses = [
+        {
+            'amount': 100,
+            'category': 'Food',
+            'date': '2023-03-08'
+        },
+        {
+            'amount': 200,
+            'category': 'Transportation',
+            'date': '2023-03-09'
+        },
+        {
+            'amount': 300,
+            'category': 'Entertainment',
+            'date': '2023-03-10'
+        }
+    ]
 
     return render_template('view_expenses.html', expenses=expenses)
 
