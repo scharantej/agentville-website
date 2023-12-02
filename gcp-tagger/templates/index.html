@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>GCP Project Tagging App</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<h1>GCP Project Tagging App</h1>
+<p>This app allows you to tag your GCP projects with Salesforce opportunity IDs to prevent their deletion.</p>
+<ul>
+<li>To add a tag, enter the project ID and Salesforce opportunity ID in the form below and click "Add Tag".</li>
+<li>To remove a tag, click the "X" next to the tag.</li>
+</ul>
+<form action="/add_tag" method="post">
+<div class="form-group">
+<label for="project_id">Project ID</label>
+<input type="text" class="form-control" id="project_id" name="project_id">
+</div>
+<div class="form-group">
+<label for="salesforce_opportunity_id">Salesforce Opportunity ID</label>
+<input type="text" class="form-control" id="salesforce_opportunity_id" name="salesforce_opportunity_id">
+</div>
+<button type="submit" class="btn btn-primary">Add Tag</button>
+</form>
+<br>
+<table class="table table-striped">
+<thead>
+<tr>
+<th>Project ID</th>
+<th>Salesforce Opportunity ID</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+{% for project in projects %}
+<tr>
+<td>{{ project.id }}</td>
+<td>{{ project.salesforce_opportunity_id }}</td>
+<td><a href="/remove_tag/{{ project.id }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</body>
+</html>
+
