@@ -1,0 +1,28 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Categories</title>
+</head>
+<body>
+<h1>Categories</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+{% for category in categories %}
+<tr>
+<td>{{ category.name }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<a href="/categories/add/">Add Category</a>
+</body>
+</html>
+
+
