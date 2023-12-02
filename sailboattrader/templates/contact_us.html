@@ -8,22 +8,12 @@
 <body>
 <h1>Contact Us</h1>
 <form action="/contact_us" method="post">
-<label for="name">Name:</label>
-<input type="text" name="name" id="name">
-<br>
-<label for="email">Email:</label>
-<input type="email" name="email" id="email">
-<br>
-<label for="message">Message:</label>
-<textarea name="message" id="message"></textarea>
-<br>
+<input type="text" name="name" placeholder="Name">
+<input type="email" name="email" placeholder="Email">
+<textarea name="message" placeholder="Message"></textarea>
 <input type="submit" value="Send">
 </form>
-{% if message_sent %}
-<p>Your message has been sent.</p>
-{% else %}
-<p>Please fill out the form to send a message.</p>
-{% endif %}
 </body>
 </html>
+
 
