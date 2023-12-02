@@ -3,15 +3,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Kids Newsfeed</title>
+<title>Newsfeed for Kids</title>
+<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<h1>Kids Newsfeed</h1>
-<ul>
-{% for article in articles %}
-<li><a href="/article/{{ article.id }}">{{ article.title }}</a></li>
-{% endfor %}
-</ul>
+<header>
+<h1>Newsfeed for Kids</h1>
+<nav>
+<a href="/">Home</a>
+<a href="/login">Login</a>
+<a href="/signup">Sign Up</a>
+</nav>
+</header>
+
+<main>
+<section id="newsfeed">
+<article>
+<h2>Article Title</h2>
+<p>Article content...</p>
+</article>
+
+<article>
+<h2>Another Article Title</h2>
+<p>Another article content...</p>
+</article>
+</section>
+</main>
+
+<footer>
+<p>Copyright 2023 Newsfeed for Kids</p>
+</footer>
 </body>
 </html>
 
