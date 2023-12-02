@@ -1,0 +1,33 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Personal Expenses Tracker</title>
+</head>
+<body>
+<h1>Your Expenses</h1>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Category</th>
+<th>Amount</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+{% for expense in expenses %}
+<tr>
+<td>{{ expense.name }}</td>
+<td>{{ expense.category }}</td>
+<td>{{ expense.amount }}</td>
+<td>{{ expense.date }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</body>
+</html>
+
+
