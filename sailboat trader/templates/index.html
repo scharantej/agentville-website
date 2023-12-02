@@ -1,0 +1,19 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Steer</title>
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<h1>Steer</h1>
+<ul>
+{% for boat in boats %}
+<li><a href="/boats/{{ boat.id }}">{{ boat.name }}</a></li>
+{% endfor %}
+</ul>
+</body>
+</html>
+
+
