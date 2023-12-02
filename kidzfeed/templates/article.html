@@ -3,11 +3,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{{ article.title }}</title>
+<title>Article</title>
+<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<h1>{{ article.title }}</h1>
-<p>{{ article.content }}</p>
+<header>
+<h1>Newsfeed for Kids</h1>
+<nav>
+<a href="/">Home</a>
+<a href="/login">Login</a>
+<a href="/signup">Sign Up</a>
+</nav>
+</header>
+
+<main>
+<section id="article">
+<h2>Article Title</h2>
+<p>Article content...</p>
+</section>
+</main>
+
+<footer>
+<p>Copyright 2023 Newsfeed for Kids</p>
+</footer>
 </body>
 </html>
 
