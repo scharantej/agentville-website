@@ -11,17 +11,17 @@
 <table>
 <thead>
 <tr>
-<th>Name</th>
 <th>Amount</th>
 <th>Category</th>
+<th>Date</th>
 </tr>
 </thead>
 <tbody>
 {% for expense in expenses %}
 <tr>
-<td>{{ expense.name }}</td>
 <td>{{ expense.amount }}</td>
 <td>{{ expense.category }}</td>
+<td>{{ expense.date }}</td>
 </tr>
 {% endfor %}
 </tbody>
