@@ -3,26 +3,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Newsfeed for Kids - Sign Up</title>
+<title>Sign Up</title>
+<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-<h1>Newsfeed for Kids - Sign Up</h1>
+<header>
+<h1>Newsfeed for Kids</h1>
 <nav>
 <a href="/">Home</a>
-<a href="/articles">Articles</a>
 <a href="/login">Login</a>
 <a href="/signup">Sign Up</a>
 </nav>
+</header>
+
 <main>
+<section id="signup">
 <h2>Sign Up</h2>
 <form action="/signup" method="post">
-<label for="username">Username:</label><br>
-<input type="text" id="username" name="username"><br>
-<label for="password">Password:</label><br>
-<input type="password" id="password" name="password"><br><br>
+<input type="text" name="username" placeholder="Username">
+<input type="password" name="password" placeholder="Password">
 <input type="submit" value="Sign Up">
 </form>
+</section>
 </main>
+
+<footer>
+<p>Copyright 2023 Newsfeed for Kids</p>
+</footer>
 </body>
 </html>
 
