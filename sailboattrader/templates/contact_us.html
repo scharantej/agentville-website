@@ -19,6 +19,11 @@
 <br>
 <input type="submit" value="Send">
 </form>
+{% if message_sent %}
+<p>Your message has been sent.</p>
+{% else %}
+<p>Please fill out the form to send your message.</p>
+{% endif %}
 </body>
 </html>
 
