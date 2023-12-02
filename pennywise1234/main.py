@@ -15,15 +15,15 @@ def add_expense():
         category = request.form.get('category')
         date = request.form.get('date')
 
-        # Save the expense to the database
+        # Add the expense to the database.
 
         return redirect(url_for('view_expenses'))
-
-    return render_template('add_expense.html')
+    else:
+        return render_template('add_expense.html')
 
 @app.route('/view_expenses')
 def view_expenses():
-    # Get all expenses from the database
+    # Get all expenses from the database.
 
     return render_template('view_expenses.html', expenses=expenses)
 
